@@ -1,0 +1,70 @@
+// 主样式文件 - 导入所有SCSS模块
+
+// 导入Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// 导入变量和mixins
+@import 'variables';
+@import 'mixins';
+
+// 全局样式
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $dark-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+// 通用工具类
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.btn {
+  @include button-base($primary-color);
+  
+  &--secondary {
+    @include button-base($secondary-color);
+  }
+  
+  &--success {
+    @include button-base($success-color);
+  }
+  
+  &--warning {
+    @include button-base($warning-color);
+  }
+  
+  &--error {
+    @include button-base($error-color);
+  }
+}
+
+.card {
+  @include card;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }

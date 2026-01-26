@@ -1,0 +1,67 @@
+// Sass变量定义
+$primary-color: #61dafb;
+$background-dark: #282c34;
+$logo-size: 40vmin;
+$animation-duration: 20s;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin responsive-font($base-size: 10px, $scale: 2vmin) {
+  font-size: calc(#{$base-size} + #{$scale});
+}
+
+// 主应用样式
+.App {
+  text-align: center;
+
+  &-logo {
+    height: $logo-size;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: App-logo-spin infinite $animation-duration linear;
+    }
+  }
+
+  &-header {
+    background-color: $background-dark;
+    min-height: 100vh;
+    @include flex-center;
+    flex-direction: column;
+    @include responsive-font();
+    color: white;
+  }
+
+  &-link {
+    color: $primary-color;
+    
+    &:hover {
+      color: lighten($primary-color, 10%);
+      transition: color 0.3s ease;
+    }
+  }
+}
+
+// 动画定义
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .App {
+    &-header {
+      @include responsive-font(8px, 1.5vmin);
+    }
+  }
+}
