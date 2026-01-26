@@ -72,3 +72,44 @@
     }
   }
 }
+  
+  // 标签页样式
+  .demo-tabs {
+    margin-top: 2rem;
+    
+    .ant-tabs-nav {
+      background-color: var(--bg-card);
+      border-radius: 8px 8px 0 0;
+      padding: 0 1rem;
+      margin-bottom: 0;
+      
+      .ant-tabs-tab {
+        color: var(--text-secondary);
+        font-weight: 500;
+        
+        &.ant-tabs-tab-active {
+          color: var(--ant-primary-color);
+          
+          .ant-tabs-tab-btn {
+            color: var(--ant-primary-color);
+          }
+        }
+        
+        &:hover {
+          color: var(--ant-primary-color-hover);
+        }
+      }
+      
+      .ant-tabs-ink-bar {
+        background-color: var(--ant-primary-color);
+      }
+    }
+    
+    .ant-tabs-content-holder {
+      background-color: var(--bg-card);
+      border-radius: 0 0 8px 8px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      border-top: none;
+    }
+  }

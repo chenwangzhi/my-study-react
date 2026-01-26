@@ -1,0 +1,98 @@
+// 表格演示组件样式
+.table-demo {
+  .table-card {
+    .ant-card-head {
+      .ant-card-head-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    }
+    
+    .table-toolbar {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--ant-border-color-split);
+    }
+    
+    // 表格样式定制
+    .ant-table {
+      .ant-table-thead > tr > th {
+        background-color: var(--ant-background-color-light);
+        color: var(--ant-text-color);
+        font-weight: 600;
+      }
+      
+      .ant-table-tbody > tr > td {
+        color: var(--ant-text-color);
+      }
+      
+      .ant-table-tbody > tr:hover > td {
+        background-color: var(--ant-background-color-light);
+      }
+      
+      .ant-table-pagination {
+        .ant-pagination-item {
+          background-color: var(--ant-component-background);
+          border-color: var(--ant-border-color-base);
+          
+          a {
+            color: var(--ant-text-color);
+          }
+          
+          &.ant-pagination-item-active {
+            background-color: var(--ant-primary-color);
+            border-color: var(--ant-primary-color);
+            
+            a {
+              color: white;
+            }
+          }
+        }
+        
+        .ant-pagination-prev,
+        .ant-pagination-next {
+          .ant-pagination-item-link {
+            background-color: var(--ant-component-background);
+            border-color: var(--ant-border-color-base);
+            color: var(--ant-text-color);
+          }
+        }
+        
+        .ant-pagination-options {
+          .ant-select {
+            .ant-select-selector {
+              background-color: var(--ant-component-background);
+              border-color: var(--ant-border-color-base);
+              color: var(--ant-text-color);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .table-card {
+      .ant-card-body {
+        padding: 1rem;
+      }
+      
+      .table-toolbar {
+        .ant-space {
+          flex-direction: column;
+          width: 100%;
+          
+          .ant-space-item {
+            width: 100%;
+            
+            .ant-input,
+            .ant-select {
+              width: 100% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

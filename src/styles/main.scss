@@ -5,10 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+// 导入Ant Design样式
+@import '~antd/dist/reset.css';
+
 // 导入变量、mixins和主题
 @import 'variables';
 @import 'mixins';
 @import 'themes';
+@import 'antd-theme';
 
 // 全局样式
 * {

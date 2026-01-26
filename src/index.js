@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GlobalComponentsProvider } from './contexts/GlobalComponentsContext';
+import { setupGlobalComponents } from './utils/globalComponents';
+
+// 设置全局组件
+setupGlobalComponents();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <GlobalComponentsProvider>
+      <App />
+    </GlobalComponentsProvider>
   </React.StrictMode>
 );
 

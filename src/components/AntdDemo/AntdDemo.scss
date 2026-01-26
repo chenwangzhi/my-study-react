@@ -1,0 +1,88 @@
+// Ant Design 演示组件样式
+.antd-demo {
+  .demo-card {
+    margin-bottom: 2rem;
+    
+    .ant-card-head {
+      .ant-card-head-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    }
+    
+    h4 {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      font-size: 1rem;
+      
+      &:not(:first-child) {
+        margin-top: 1.5rem;
+      }
+    }
+    
+    // 自定义一些组件样式以适配主题
+    .ant-input,
+    .ant-select-selector,
+    .ant-picker {
+      transition: all 0.3s ease;
+    }
+    
+    .ant-btn {
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+    
+    .ant-progress {
+      .ant-progress-text {
+        color: var(--text-primary);
+      }
+    }
+    
+    .ant-rate {
+      color: var(--ant-warning-color);
+    }
+    
+    .ant-slider {
+      .ant-slider-rail {
+        background-color: var(--ant-border-color-base);
+      }
+      
+      .ant-slider-track {
+        background-color: var(--ant-primary-color);
+      }
+      
+      .ant-slider-handle {
+        border-color: var(--ant-primary-color);
+        
+        &:hover {
+          border-color: var(--ant-primary-color-hover);
+        }
+      }
+    }
+    
+    .ant-tag {
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .demo-card {
+      .ant-card-body {
+        padding: 1rem;
+      }
+      
+      h4 {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
