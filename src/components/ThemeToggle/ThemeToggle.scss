@@ -1,0 +1,62 @@
+// 主题切换按钮样式
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    background-color: var(--bg-secondary);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+  }
+  
+  &__text {
+    white-space: nowrap;
+    transition: opacity 0.3s ease;
+  }
+  
+  // 悬停时图标旋转效果
+  &:hover &__icon {
+    transform: rotate(180deg);
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    
+    &__text {
+      display: none;
+    }
+  }
+}

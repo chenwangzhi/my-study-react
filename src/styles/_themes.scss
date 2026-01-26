@@ -1,0 +1,57 @@
+// 主题变量定义
+
+// 浅色主题
+$light-theme: (
+  'bg-primary': #ffffff,
+  'bg-secondary': #f8fafc,
+  'bg-card': #ffffff,
+  'text-primary': #1f2937,
+  'text-secondary': #6b7280,
+  'border-color': #e5e7eb,
+  'shadow': rgba(0, 0, 0, 0.1),
+  'button-bg': #3b82f6,
+  'button-hover': #2563eb,
+  'accent': #10b981
+);
+
+// 深色主题
+$dark-theme: (
+  'bg-primary': #111827,
+  'bg-secondary': #1f2937,
+  'bg-card': #374151,
+  'text-primary': #f9fafb,
+  'text-secondary': #d1d5db,
+  'border-color': #4b5563,
+  'shadow': rgba(0, 0, 0, 0.3),
+  'button-bg': #3b82f6,
+  'button-hover': #2563eb,
+  'accent': #10b981
+);
+
+// 主题切换mixin
+@mixin theme-colors($theme) {
+  --bg-primary: #{map-get($theme, 'bg-primary')};
+  --bg-secondary: #{map-get($theme, 'bg-secondary')};
+  --bg-card: #{map-get($theme, 'bg-card')};
+  --text-primary: #{map-get($theme, 'text-primary')};
+  --text-secondary: #{map-get($theme, 'text-secondary')};
+  --border-color: #{map-get($theme, 'border-color')};
+  --shadow: #{map-get($theme, 'shadow')};
+  --button-bg: #{map-get($theme, 'button-bg')};
+  --button-hover: #{map-get($theme, 'button-hover')};
+  --accent: #{map-get($theme, 'accent')};
+}
+
+// 应用主题
+:root {
+  @include theme-colors($light-theme);
+}
+
+[data-theme="dark"] {
+  @include theme-colors($dark-theme);
+}
+
+// 主题过渡动画
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

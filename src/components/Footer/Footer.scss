@@ -1,42 +1,35 @@
 // Footer组件的Sass样式
-$counter-bg: #3b82f6;
-$counter-hover: #2563eb;
-$button-bg: #10b981;
-$button-hover: #059669;
-$border-radius: 8px;
-$transition-duration: 0.2s;
-
 .footer-container {
   text-align: center;
   
   .counter-display {
-    background-color: $counter-bg;
+    background-color: var(--accent);
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: $border-radius;
+    border-radius: 8px;
     display: inline-block;
     margin-bottom: 1rem;
     font-weight: 600;
+    transition: all 0.3s ease;
     
     &:hover {
-      background-color: $counter-hover;
       transform: translateY(-2px);
-      transition: all $transition-duration ease;
+      box-shadow: 0 4px 12px var(--shadow);
     }
   }
   
   .counter-button {
-    background-color: $button-bg;
+    background-color: var(--button-bg);
     color: white;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: $border-radius;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all $transition-duration ease;
+    transition: all 0.3s ease;
     
     &:hover {
-      background-color: $button-hover;
+      background-color: var(--button-hover);
       transform: scale(1.05);
     }
     

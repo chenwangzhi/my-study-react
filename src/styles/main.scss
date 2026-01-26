@@ -5,9 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
-// 导入变量和mixins
+// 导入变量、mixins和主题
 @import 'variables';
 @import 'mixins';
+@import 'themes';
 
 // 全局样式
 * {
@@ -19,7 +20,8 @@ body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: 1.6;
-  color: $dark-color;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -36,27 +38,56 @@ code {
 }
 
 .btn {
-  @include button-base($primary-color);
+  background-color: var(--button-bg);
+  color: white;
+  border: none;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-md;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
   
   &--secondary {
-    @include button-base($secondary-color);
+    background-color: var(--accent);
+    
+    &:hover {
+      background-color: darken(#10b981, 10%);
+    }
   }
   
-  &--success {
-    @include button-base($success-color);
-  }
-  
-  &--warning {
-    @include button-base($warning-color);
-  }
-  
-  &--error {
-    @include button-base($error-color);
+  &--theme-toggle {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    
+    &:hover {
+      background-color: var(--bg-secondary);
+      transform: scale(1.05);
+    }
   }
 }
 
 .card {
-  @include card;
+  background: var(--bg-card);
+  border-radius: $border-radius-lg;
+  box-shadow: 0 4px 6px var(--shadow);
+  padding: $spacing-lg;
+  border: 1px solid var(--border-color);
+  
+  &:hover {
+    box-shadow: 0 8px 25px var(--shadow);
+    transition: box-shadow $transition-normal;
+  }
 }
 
 .text-center {
