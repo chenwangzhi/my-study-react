@@ -1,0 +1,118 @@
+// 仪表盘页面样式
+.dashboard-page {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  padding: 2rem 0;
+  
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+  }
+  
+  .stats-section {
+    margin-bottom: 3rem;
+    
+    .ant-card {
+      text-align: center;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--shadow);
+      }
+      
+      .ant-statistic {
+        .ant-statistic-title {
+          color: var(--text-secondary);
+          font-weight: 500;
+        }
+        
+        .ant-statistic-content {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+  
+  .demo-section {
+    .dashboard-tabs {
+      .ant-tabs-nav {
+        background-color: var(--bg-card);
+        border-radius: 8px 8px 0 0;
+        padding: 0 1rem;
+        margin-bottom: 0;
+        
+        .ant-tabs-tab {
+          color: var(--text-secondary);
+          font-weight: 500;
+          
+          &.ant-tabs-tab-active {
+            color: var(--ant-primary-color);
+            
+            .ant-tabs-tab-btn {
+              color: var(--ant-primary-color);
+            }
+          }
+          
+          &:hover {
+            color: var(--ant-primary-color-hover);
+          }
+        }
+        
+        .ant-tabs-ink-bar {
+          background-color: var(--ant-primary-color);
+        }
+      }
+      
+      .ant-tabs-content-holder {
+        background-color: var(--bg-card);
+        border-radius: 0 0 8px 8px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        border-top: none;
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+    
+    .dashboard-header {
+      margin-bottom: 2rem;
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        padding: 0 1rem;
+      }
+    }
+    
+    .stats-section {
+      margin-bottom: 2rem;
+    }
+    
+    .demo-section {
+      .dashboard-tabs {
+        .ant-tabs-content-holder {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}

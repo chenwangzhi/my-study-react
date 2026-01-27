@@ -1,0 +1,115 @@
+// 登录页面样式
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--ant-primary-color) 0%, var(--ant-success-color) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    
+    .login-card {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      
+      .ant-card-body {
+        padding: 2rem;
+      }
+      
+      .login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        
+        h1 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: 0.5rem;
+        }
+        
+        p {
+          color: var(--text-secondary);
+          font-size: 1rem;
+        }
+      }
+      
+      .ant-form {
+        .ant-form-item-label {
+          label {
+            font-weight: 600;
+            color: var(--text-primary);
+          }
+        }
+        
+        .ant-input-affix-wrapper,
+        .ant-input {
+          border-radius: 8px;
+          border: 2px solid var(--ant-border-color-base);
+          transition: all 0.3s ease;
+          
+          &:hover {
+            border-color: var(--ant-primary-color-hover);
+          }
+          
+          &:focus,
+          &.ant-input-affix-wrapper-focused {
+            border-color: var(--ant-primary-color);
+            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+          }
+        }
+        
+        .ant-btn-primary {
+          height: 48px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 1rem;
+          
+          &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+          }
+        }
+      }
+      
+      .login-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+        
+        .ant-btn-link {
+          padding: 0;
+          height: auto;
+          color: var(--text-secondary);
+          
+          &:hover {
+            color: var(--ant-primary-color);
+          }
+        }
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 480px) {
+    padding: 1rem;
+    
+    .login-container {
+      .login-card {
+        .ant-card-body {
+          padding: 1.5rem;
+        }
+        
+        .login-header {
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -15,6 +15,7 @@ import {
   Tag,
   Progress,
   Rate,
+  Statistic,
   
   // 反馈组件
   Alert,
@@ -22,12 +23,21 @@ import {
   
   // 导航组件
   Tabs,
+  Menu,
+  Dropdown,
   
   // 数据录入
   Form,
   DatePicker,
   Switch,
   Slider,
+  
+  // 布局组件
+  Layout,
+  
+  // 其他
+  Avatar,
+  Spin,
 } from 'antd';
 
 import {
@@ -41,6 +51,11 @@ import {
   SettingOutlined,
   HeartOutlined,
   StarOutlined,
+  LogoutOutlined,
+  HomeOutlined,
+  DashboardOutlined,
+  ProfileOutlined,
+  SaveOutlined,
 } from '@ant-design/icons';
 
 // 解构常用的子组件
@@ -48,6 +63,8 @@ const { TextArea, Search, Password } = Input;
 const { Option } = Select;
 const { Item: FormItem } = Form;
 const { TabPane } = Tabs;
+const { Header, Footer, Content, Sider } = Layout;
+const { Item: MenuItem } = Menu;
 
 // 全局组件对象
 const GlobalComponents = {
@@ -70,6 +87,7 @@ const GlobalComponents = {
   Tag,
   Progress,
   Rate,
+  Statistic,
   
   // 反馈组件
   Alert,
@@ -78,6 +96,9 @@ const GlobalComponents = {
   // 导航组件
   Tabs,
   TabPane,
+  Menu,
+  MenuItem,
+  Dropdown,
   
   // 数据录入
   Form,
@@ -85,6 +106,17 @@ const GlobalComponents = {
   DatePicker,
   Switch,
   Slider,
+  
+  // 布局组件
+  Layout,
+  Header,
+  Footer,
+  Content,
+  Sider,
+  
+  // 其他
+  Avatar,
+  Spin,
   
   // 图标
   SearchOutlined,
@@ -96,6 +128,11 @@ const GlobalComponents = {
   SettingOutlined,
   HeartOutlined,
   StarOutlined,
+  LogoutOutlined,
+  HomeOutlined,
+  DashboardOutlined,
+  ProfileOutlined,
+  SaveOutlined,
 };
 
 // 将组件挂载到全局

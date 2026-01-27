@@ -1,0 +1,114 @@
+// 导航组件样式
+.app-header {
+  background-color: var(--bg-card) !important;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0;
+  height: 64px;
+  line-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px var(--shadow);
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      
+      .logo {
+        margin-right: 2rem;
+        cursor: pointer;
+        
+        span {
+          font-size: 1.5rem;
+          font-weight: 700;
+          background: linear-gradient(135deg, var(--ant-primary-color), var(--ant-success-color));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+      }
+      
+      .header-menu {
+        flex: 1;
+        border-bottom: none;
+        background: transparent;
+        
+        .ant-menu-item {
+          color: var(--text-primary);
+          
+          &:hover {
+            color: var(--ant-primary-color);
+          }
+          
+          &.ant-menu-item-selected {
+            color: var(--ant-primary-color);
+            
+            &::after {
+              border-bottom-color: var(--ant-primary-color);
+            }
+          }
+        }
+      }
+    }
+    
+    .header-right {
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: var(--bg-secondary);
+        }
+        
+        .username {
+          color: var(--text-primary);
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .header-content {
+      padding: 0 1rem;
+      
+      .header-left {
+        .logo {
+          margin-right: 1rem;
+          
+          span {
+            font-size: 1.2rem;
+          }
+        }
+        
+        .header-menu {
+          display: none; // 在移动端隐藏菜单
+        }
+      }
+      
+      .header-right {
+        .user-info {
+          .username {
+            display: none; // 在移动端隐藏用户名
+          }
+        }
+      }
+    }
+  }
+}

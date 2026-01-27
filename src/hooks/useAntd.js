@@ -74,6 +74,11 @@ export const useAntdIcons = () => {
     SettingOutlined: components.SettingOutlined,
     HeartOutlined: components.HeartOutlined,
     StarOutlined: components.StarOutlined,
+    LogoutOutlined: components.LogoutOutlined,
+    HomeOutlined: components.HomeOutlined,
+    DashboardOutlined: components.DashboardOutlined,
+    ProfileOutlined: components.ProfileOutlined,
+    SaveOutlined: components.SaveOutlined,
   };
 };
 
