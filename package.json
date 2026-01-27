@@ -15,11 +15,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run unocss && react-scripts start",
+    "dev": "npm run unocss && react-scripts start",
+    "build": "npm run unocss && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "unocss": "unocss \"src/**/*.{js,jsx,ts,tsx}\" --out-file src/styles/uno.css",
+    "unocss:watch": "unocss \"src/**/*.{js,jsx,ts,tsx}\" --out-file src/styles/uno.css --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +42,10 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.97.3"
+    "@unocss/cli": "^66.6.0",
+    "@unocss/preset-attributify": "^66.6.0",
+    "@unocss/preset-uno": "^66.6.0",
+    "sass": "^1.97.3",
+    "unocss": "^66.6.0"
   }
 }

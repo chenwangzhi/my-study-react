@@ -9,10 +9,8 @@ export default function Navigation() {
   const location = useLocation();
   const { isAuthenticated, user, logout } = useAuth();
   const { 
-    Layout, 
     Header, 
     Menu, 
-    MenuItem, 
     Button, 
     Space, 
     Avatar, 

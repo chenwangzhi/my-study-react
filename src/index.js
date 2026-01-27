@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
+import './styles/uno.css'; // 导入 UnoCSS 样式
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { setupGlobalComponents } from './utils/globalComponents';

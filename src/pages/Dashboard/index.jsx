@@ -3,6 +3,7 @@ import { useAntd } from '../../hooks/useAntd';
 import AntdDemo from '../../components/AntdDemo';
 import TableDemo from '../../components/TableDemo';
 import GlobalComponentsExample from '../../components/GlobalComponentsExample';
+import UnocssDemo from '../../components/UnocssDemo';
 import './Dashboard.scss';
 
 export default function Dashboard() {
@@ -63,15 +64,19 @@ export default function Dashboard() {
         {/* 功能演示区域 */}
         <div className="demo-section">
           <Tabs defaultActiveKey="1" size="large" className="dashboard-tabs">
-            <TabPane tab="🚀 全局组件演示" key="1">
+            <TabPane tab="🎨 UnoCSS 原子CSS" key="1">
+              <UnocssDemo />
+            </TabPane>
+            
+            <TabPane tab="🚀 全局组件演示" key="2">
               <GlobalComponentsExample />
             </TabPane>
             
-            <TabPane tab="🧩 Ant Design 组件" key="2">
+            <TabPane tab="🧩 Ant Design 组件" key="3">
               <AntdDemo />
             </TabPane>
             
-            <TabPane tab="📊 数据表格" key="3">
+            <TabPane tab="📊 数据表格" key="4">
               <TableDemo />
             </TabPane>
           </Tabs>

@@ -1,0 +1,62 @@
+// UnoCSS 演示组件样式
+.unocss-demo {
+  .demo-card {
+    .ant-card-head {
+      .ant-card-head-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+    }
+    
+    .demo-section {
+      h3 {
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        
+        &:not(:first-child) {
+          margin-top: 2rem;
+        }
+      }
+      
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        
+        .demo-item {
+          text-align: center;
+          
+          code {
+            display: block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: var(--bg-secondary);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+          }
+        }
+      }
+    }
+  }
+  
+  // 响应式设计
+  @media (max-width: 768px) {
+    .demo-card {
+      .ant-card-body {
+        padding: 1rem;
+      }
+      
+      .demo-section {
+        .demo-grid {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
+      }
+    }
+  }
+}

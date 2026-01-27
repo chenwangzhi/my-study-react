@@ -1,2 +1,21 @@
 {
+  "unocss.root": ".",
+  "unocss.configFile": "uno.config.js",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.suggest.insertMode": "replace",
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "files.associations": {
+    "*.css": "postcss"
+  }
 }
