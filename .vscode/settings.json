@@ -1,21 +1,54 @@
 {
+  // ========== UnoCSS 核心配置 ==========
   "unocss.root": ".",
   "unocss.configFile": "uno.config.js",
-  "editor.quickSuggestions": {
-    "strings": true
-  },
-  "editor.suggest.insertMode": "replace",
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+
+  // ========== 编辑器提示优化 ==========
+  "editor.quickSuggestions": {
+    "strings": true,
+    "comments": false,
+    "other": true
+  },
+  "editor.suggest.insertMode": "replace",
   "editor.inlineSuggest.enabled": true,
   "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.formatOnSave": true, // 保存时自动格式化
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // 全局默认 Prettier
+
+  // ========== React/TS 适配 ==========
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact"
   },
   "emmet.triggerExpansionOnTab": true,
-  "files.associations": {
-    "*.css": "postcss"
-  }
+  "typescript.updateImportsOnFileMove.enabled": "always", // 移动TS文件自动更新导入路径
+
+  // ========== Path Intellisense 路径补全 ==========
+  "path-intellisense.mappings": {
+    "@": "${workspaceRoot}/src" // 适配 React 项目的 @ 别名补全
+  },
+
+  // ========== Prettier 格式化（和 UnoCSS 兼容） ==========
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.enable": true,
+  "prettier.tabWidth": 2, // 适配前端主流 2 空格缩进
+  "prettier.singleQuote": true, // 单引号（React/TS 主流规范）
+  "prettier.semi": false // 结尾无分号（可选，根据团队规范调整）
 }
