@@ -1,0 +1,50 @@
+.app-breadcrumb {
+  padding: 12px 0;
+
+  .ant-breadcrumb {
+    font-size: 14px;
+
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+
+      &.clickable {
+        cursor: pointer;
+        color: var(--color-text-secondary);
+
+        &:hover {
+          color: var(--color-primary);
+        }
+      }
+
+      &.last {
+        color: var(--color-text);
+        font-weight: 500;
+      }
+
+      .breadcrumb-icon {
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .breadcrumb-title {
+        line-height: 1.4;
+      }
+    }
+  }
+
+  // 响应式设计
+  @media (max-width: 768px) {
+    padding: 8px 0;
+
+    .ant-breadcrumb {
+      font-size: 13px;
+
+      .breadcrumb-icon {
+        font-size: 13px;
+      }
+    }
+  }
+}

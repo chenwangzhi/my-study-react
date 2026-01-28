@@ -1,44 +1,49 @@
-import { useAuth } from '../../hooks/useAuth';
-import { useAntd } from '../../hooks/useAntd';
-import AntdDemo from '../../components/AntdDemo';
-import TableDemo from '../../components/TableDemo';
-import GlobalComponentsExample from '../../components/GlobalComponentsExample';
-import UnocssDemo from '../../components/UnocssDemo';
-import './Dashboard.scss';
+import { useAuth } from '../../hooks/useAuth'
+import { useAntd } from '../../hooks/useAntd'
+import { useI18n } from '../../hooks/useI18n'
+import AntdDemo from '../../components/AntdDemo'
+import TableDemo from '../../components/TableDemo'
+import GlobalComponentsExample from '../../components/GlobalComponentsExample'
+import UnocssDemo from '../../components/UnocssDemo'
+import AntdI18nDemo from '../../components/AntdI18nDemo'
+import './Dashboard.scss'
 
 export default function Dashboard() {
-  const { user } = useAuth();
-  const { Card, Row, Col, Statistic, Tabs, TabPane } = useAntd();
+  const { user } = useAuth()
+  const { t } = useI18n()
+  const { Card, Row, Col, Statistic, Tabs, TabPane } = useAntd()
 
   const stats = [
     {
-      title: '总访问量',
+      title: t('dashboard.stats.users'),
       value: 11280,
-      suffix: '次',
+      suffix: '',
     },
     {
-      title: '今日访问',
+      title: t('dashboard.stats.orders'),
       value: 893,
-      suffix: '次',
+      suffix: '',
     },
     {
-      title: '活跃用户',
+      title: t('dashboard.stats.revenue'),
       value: 1234,
-      suffix: '人',
+      suffix: '',
     },
     {
-      title: '转化率',
+      title: t('dashboard.stats.growth'),
       value: 85.6,
       suffix: '%',
     },
-  ];
+  ]
 
   return (
     <div className="dashboard-page">
       <div className="container">
         <div className="dashboard-header">
-          <h1>仪表盘</h1>
-          <p>欢迎回来，{user?.name}！这里是您的工作台。</p>
+          <h1>{t('dashboard.title')}</h1>
+          <p>
+            {t('dashboard.welcome')}, {user?.name}！
+          </p>
         </div>
 
         {/* 统计卡片 */}
@@ -51,8 +56,8 @@ export default function Dashboard() {
                     title={stat.title}
                     value={stat.value}
                     suffix={stat.suffix}
-                    valueStyle={{ 
-                      color: index % 2 === 0 ? '#3f8600' : '#1890ff' 
+                    valueStyle={{
+                      color: index % 2 === 0 ? '#3f8600' : '#1890ff',
                     }}
                   />
                 </Card>
@@ -67,21 +72,25 @@ export default function Dashboard() {
             <TabPane tab="🎨 UnoCSS 原子CSS" key="1">
               <UnocssDemo />
             </TabPane>
-            
-            <TabPane tab="🚀 全局组件演示" key="2">
+
+            <TabPane tab="🌍 Ant Design 国际化" key="2">
+              <AntdI18nDemo />
+            </TabPane>
+
+            <TabPane tab="🚀 全局组件演示" key="3">
               <GlobalComponentsExample />
             </TabPane>
-            
-            <TabPane tab="🧩 Ant Design 组件" key="3">
+
+            <TabPane tab="🧩 Ant Design 组件" key="4">
               <AntdDemo />
             </TabPane>
-            
-            <TabPane tab="📊 数据表格" key="4">
+
+            <TabPane tab="📊 数据表格" key="5">
               <TableDemo />
             </TabPane>
           </Tabs>
         </div>
       </div>
     </div>
-  );
+  )
 }

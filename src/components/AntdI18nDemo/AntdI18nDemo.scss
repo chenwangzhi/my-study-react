@@ -1,0 +1,50 @@
+.antd-i18n-demo {
+  padding: 20px;
+
+  .demo-card {
+    margin-bottom: 20px;
+
+    .ant-card-head-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  .ant-upload-drag {
+    background-color: var(--color-bg-container);
+    border: 2px dashed var(--color-border);
+    border-radius: 8px;
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+  }
+
+  .ant-calendar {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .ant-table {
+    .ant-table-thead > tr > th {
+      background-color: var(--color-bg-container);
+      font-weight: 600;
+    }
+  }
+
+  .ant-empty {
+    margin: 20px 0;
+  }
+
+  .ant-result {
+    padding: 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+
+    .demo-card {
+      margin-bottom: 15px;
+    }
+  }
+}
