@@ -90,6 +90,33 @@ export const API_ENDPOINTS = {
   },
 }
 
+// 外部 API 配置
+export const EXTERNAL_APIS = {
+  // JSONPlaceholder - 免费的测试API
+  JSONPLACEHOLDER: 'https://jsonplaceholder.typicode.com',
+
+  // 天气API (免费)
+  WEATHER: 'https://api.openweathermap.org/data/2.5',
+
+  // GitHub API
+  GITHUB: 'https://api.github.com',
+
+  // 随机用户API
+  RANDOM_USER: 'https://randomuser.me/api',
+
+  // 新闻API (免费层)
+  NEWS: 'https://newsapi.org/v2',
+
+  // 猫咪图片API
+  CAT_FACTS: 'https://catfact.ninja',
+
+  // 狗狗图片API
+  DOG_IMAGES: 'https://dog.ceo/dog-api',
+
+  // 诗词API
+  POETRY: 'https://v1.jinrishici.com',
+}
+
 // 缓存配置
 export const CACHE_CONFIG = {
   // 缓存键前缀

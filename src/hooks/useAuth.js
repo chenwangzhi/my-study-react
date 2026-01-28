@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext, useContext } from 'react'
-import { authAPI } from '../api/services'
 
 // 认证上下文
 const AuthContext = createContext()

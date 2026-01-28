@@ -3,7 +3,7 @@
  * 展示如何使用封装的 API 系统
  */
 
-import React, { useState } from 'react'
+import React from 'react'
 import { useAntd } from '../../hooks/useAntd'
 import { useAPI, usePaginatedAPI, useUpload } from '../../hooks/useAPI'
 import { userAPI, uploadAPI, systemAPI } from '../../api/services'
@@ -21,14 +21,9 @@ const APIDemo = () => {
     message,
     Spin,
     Alert,
-    Form,
-    Input,
-    Modal,
     Tag,
     InboxOutlined,
   } = useAntd()
-
-  const [selectedUser, setSelectedUser] = useState(null)
 
   // 系统健康检查 API
   const {
@@ -121,7 +116,7 @@ const APIDemo = () => {
   const handleViewUser = async (userId) => {
     try {
       await getUserDetail(userId)
-      setSelectedUser(userId)
+      // setSelectedUser(userId) // 暂时注释掉，因为没有使用
     } catch (error) {
       console.error('获取用户详情失败:', error)
     }
@@ -139,7 +134,7 @@ const APIDemo = () => {
         message.error('文件大小不能超过 10MB!')
         return false
       }
-      
+
       upload(file)
       return false // 阻止默认上传
     },
@@ -211,11 +206,27 @@ const APIDemo = () => {
           <Card title="用户详情" className="api-demo__card">
             <Spin spinning={userDetailLoading}>
               <div className="user-detail">
-                <p><strong>ID:</strong> {userDetail.id}</p>
-                <p><strong>姓名:</strong> {userDetail.name}</p>
-                <p><strong>邮箱:</strong> {userDetail.email}</p>
-                <p><strong>角色:</strong> {userDetail.role}</p>
-                <p><strong>头像:</strong> <img src={userDetail.avatar} alt="avatar" width="40" height="40" /></p>
+                <p>
+                  <strong>ID:</strong> {userDetail.id}
+                </p>
+                <p>
+                  <strong>姓名:</strong> {userDetail.name}
+                </p>
+                <p>
+                  <strong>邮箱:</strong> {userDetail.email}
+                </p>
+                <p>
+                  <strong>角色:</strong> {userDetail.role}
+                </p>
+                <p>
+                  <strong>头像:</strong>{' '}
+                  <img
+                    src={userDetail.avatar}
+                    alt="avatar"
+                    width="40"
+                    height="40"
+                  />
+                </p>
               </div>
             </Spin>
           </Card>
@@ -236,7 +247,7 @@ const APIDemo = () => {
               支持单个文件上传，文件大小不超过 10MB
             </p>
           </Upload.Dragger>
-          
+
           {uploading && (
             <div style={{ marginTop: 16 }}>
               <Progress percent={progress} status="active" />

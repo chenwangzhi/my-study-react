@@ -304,7 +304,7 @@ export const createPaginatedAPI = (baseUrl) => {
 /**
  * 导出所有 API
  */
-export default {
+const apiServices = {
   http,
   authAPI,
   userAPI,
@@ -312,3 +312,5 @@ export default {
   systemAPI,
   createPaginatedAPI,
 }
+
+export default apiServices

@@ -93,6 +93,16 @@ export default function Navigation() {
             icon: <SettingOutlined />,
             label: 'API 演示',
           },
+          {
+            key: '/external-api',
+            icon: <SettingOutlined />,
+            label: '外部API演示',
+          },
+          {
+            key: '/api-test',
+            icon: <SettingOutlined />,
+            label: 'API测试',
+          },
         ]
       : []),
   ]

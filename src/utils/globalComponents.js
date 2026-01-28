@@ -19,6 +19,7 @@ import {
   Descriptions,
   Badge,
   Pagination,
+  Typography,
 
   // 反馈组件
   Alert,
@@ -56,6 +57,8 @@ import {
   // 其他
   Avatar,
   Spin,
+  Image,
+  List,
 } from 'antd'
 
 import {
@@ -75,6 +78,7 @@ import {
   ProfileOutlined,
   SaveOutlined,
   InboxOutlined,
+  GithubOutlined,
 } from '@ant-design/icons'
 
 // 解构常用的子组件
@@ -87,6 +91,9 @@ const { Item: MenuItem } = Menu
 const { Item: DescriptionsItem } = Descriptions
 const { Dragger } = Upload
 const { RangePicker } = DatePicker
+const { Title, Text, Paragraph } = Typography
+const { Item: ListItem } = List
+const { Meta: ListItemMeta } = List.Item
 
 // 全局组件对象
 const GlobalComponents = {
@@ -114,6 +121,13 @@ const GlobalComponents = {
   DescriptionsItem,
   Badge,
   Pagination,
+  Typography,
+  Title,
+  Text,
+  Paragraph,
+  List,
+  ListItem,
+  ListItemMeta,
 
   // 反馈组件
   Alert,
@@ -149,6 +163,7 @@ const GlobalComponents = {
   Empty,
   Result,
   Calendar,
+  Image,
 
   // 布局组件
   Layout,
@@ -177,6 +192,7 @@ const GlobalComponents = {
   ProfileOutlined,
   SaveOutlined,
   InboxOutlined,
+  GithubOutlined,
 }
 
 // 将组件挂载到全局

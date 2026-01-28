@@ -9,6 +9,8 @@ const Profile = lazy(() => import('../pages/Profile'))
 const Settings = lazy(() => import('../pages/Settings'))
 const NotFound = lazy(() => import('../pages/NotFound'))
 const APIDemo = lazy(() => import('../components/APIDemo'))
+const ExternalAPIDemo = lazy(() => import('../components/ExternalAPIDemo'))
+const SimpleAPITest = lazy(() => import('../components/SimpleAPITest'))
 
 // 路由配置
 export const routes = [
@@ -62,6 +64,24 @@ export const routes = [
     element: APIDemo,
     meta: {
       title: 'API 演示',
+      requiresAuth: true,
+      roles: ['admin', 'user'],
+    },
+  },
+  {
+    path: '/external-api',
+    element: ExternalAPIDemo,
+    meta: {
+      title: '外部API演示',
+      requiresAuth: true,
+      roles: ['admin', 'user'],
+    },
+  },
+  {
+    path: '/api-test',
+    element: SimpleAPITest,
+    meta: {
+      title: 'API测试',
       requiresAuth: true,
       roles: ['admin', 'user'],
     },

@@ -67,6 +67,7 @@
 .mt-2{margin-top:0.5rem;}
 .block,
 [block=""]{display:block;}
+[size~="\36 4"]{width:16rem;height:16rem;}
 [size~="\38 0"]{width:20rem;height:20rem;}
 .h-16{height:4rem;}
 .h-20{height:5rem;}

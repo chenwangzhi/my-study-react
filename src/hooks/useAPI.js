@@ -87,7 +87,7 @@ export function useAPI(apiFunction, options = {}) {
       errorMessage,
       showSuccess,
       showError,
-    ]
+    ],
   )
 
   // 重置状态
@@ -167,9 +167,9 @@ export function usePaginatedAPI(apiFunction, options = {}) {
       // 更新分页信息
       if (result && typeof result === 'object') {
         const { data: listData, total, page, pageSize } = result
-        
+
         if (total !== undefined) {
-          setPagination(prev => ({
+          setPagination((prev) => ({
             ...prev,
             total,
             current: page || prev.current,
@@ -182,25 +182,22 @@ export function usePaginatedAPI(apiFunction, options = {}) {
 
       return result
     },
-    [pagination.current, pagination.pageSize, filters, originalExecute]
+    [filters, originalExecute], // 移除pagination依赖，使用最新的state
   )
 
   // 改变页码
-  const changePage = useCallback(
-    (page, pageSize) => {
-      setPagination(prev => ({
-        ...prev,
-        current: page,
-        pageSize: pageSize || prev.pageSize,
-      }))
-    },
-    []
-  )
+  const changePage = useCallback((page, pageSize) => {
+    setPagination((prev) => ({
+      ...prev,
+      current: page,
+      pageSize: pageSize || prev.pageSize,
+    }))
+  }, [])
 
   // 改变筛选条件
   const changeFilters = useCallback((newFilters) => {
     setFilters(newFilters)
-    setPagination(prev => ({ ...prev, current: 1 })) // 重置到第一页
+    setPagination((prev) => ({ ...prev, current: 1 })) // 重置到第一页
   }, [])
 
   // 刷新当前页
@@ -224,14 +221,14 @@ export function usePaginatedAPI(apiFunction, options = {}) {
     if (immediate || pagination.current !== initialPage) {
       execute()
     }
-  }, [pagination.current, pagination.pageSize])
+  }, [pagination.current, pagination.pageSize, execute])
 
   // 监听筛选条件变化
   useEffect(() => {
     if (Object.keys(filters).length > 0) {
       execute()
     }
-  }, [filters])
+  }, [filters, execute])
 
   return {
     data,
@@ -314,7 +311,7 @@ export function useUpload(uploadFunction, options = {}) {
       errorMessage,
       showSuccess,
       showError,
-    ]
+    ],
   )
 
   return {
@@ -409,7 +406,7 @@ export function useBatchOperation(batchFunction, options = {}) {
       errorMessage,
       showSuccess,
       showError,
-    ]
+    ],
   )
 
   return {
