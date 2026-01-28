@@ -1,0 +1,225 @@
+.api-demo {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    h2 {
+      color: var(--text-color);
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--text-color-secondary);
+      font-size: 14px;
+    }
+  }
+
+  &__content {
+    .ant-divider {
+      margin: 32px 0;
+    }
+  }
+
+  &__card {
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+
+    .ant-card-head {
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .ant-card-body {
+      padding: 24px;
+    }
+  }
+
+  .user-detail {
+    p {
+      margin-bottom: 12px;
+      font-size: 14px;
+
+      strong {
+        display: inline-block;
+        width: 60px;
+        color: var(--text-color);
+      }
+    }
+
+    img {
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+    }
+  }
+
+  .api-usage {
+    h4 {
+      color: var(--text-color);
+      margin: 24px 0 12px 0;
+      font-size: 16px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    pre {
+      background: var(--background-color-light);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      overflow-x: auto;
+      color: var(--text-color);
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .ant-upload-drag {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    background: var(--background-color);
+
+    &:hover {
+      border-color: var(--primary-color);
+    }
+
+    .ant-upload-drag-icon {
+      color: var(--text-color-secondary);
+    }
+
+    .ant-upload-text {
+      color: var(--text-color);
+      font-size: 16px;
+      margin: 16px 0 8px;
+    }
+
+    .ant-upload-hint {
+      color: var(--text-color-secondary);
+      font-size: 14px;
+    }
+  }
+
+  .ant-progress {
+    .ant-progress-text {
+      color: var(--text-color);
+    }
+  }
+
+  .ant-alert {
+    margin-top: 16px;
+    border-radius: 6px;
+
+    .ant-alert-message {
+      color: var(--text-color);
+    }
+
+    .ant-alert-description {
+      color: var(--text-color-secondary);
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+  }
+
+  .ant-table {
+    .ant-table-thead > tr > th {
+      background: var(--background-color-light);
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .ant-table-tbody > tr > td {
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-color);
+    }
+
+    .ant-table-tbody > tr:hover > td {
+      background: var(--background-color-light);
+    }
+  }
+
+  .ant-pagination {
+    .ant-pagination-item {
+      border-color: var(--border-color);
+
+      a {
+        color: var(--text-color);
+      }
+
+      &:hover {
+        border-color: var(--primary-color);
+
+        a {
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    .ant-pagination-item-active {
+      border-color: var(--primary-color);
+      background: var(--primary-color);
+
+      a {
+        color: #fff;
+      }
+    }
+
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      .ant-pagination-item-link {
+        color: var(--text-color);
+        border-color: var(--border-color);
+
+        &:hover {
+          color: var(--primary-color);
+          border-color: var(--primary-color);
+        }
+      }
+    }
+
+    .ant-pagination-options {
+      .ant-select-selector {
+        color: var(--text-color);
+        border-color: var(--border-color);
+      }
+    }
+
+    .ant-pagination-total-text {
+      color: var(--text-color-secondary);
+    }
+  }
+}
+
+// 响应式设计
+@media (max-width: 768px) {
+  .api-demo {
+    padding: 16px;
+
+    &__card {
+      .ant-card-body {
+        padding: 16px;
+      }
+    }
+
+    .api-usage {
+      pre {
+        font-size: 12px;
+        padding: 12px;
+      }
+    }
+
+    .ant-table {
+      font-size: 12px;
+    }
+  }
+}

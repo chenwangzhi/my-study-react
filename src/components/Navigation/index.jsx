@@ -88,6 +88,11 @@ export default function Navigation() {
             icon: <DashboardOutlined />,
             label: t('navigation.dashboard'),
           },
+          {
+            key: '/api-demo',
+            icon: <SettingOutlined />,
+            label: 'API 演示',
+          },
         ]
       : []),
   ]
