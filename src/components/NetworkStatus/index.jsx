@@ -4,7 +4,15 @@ import { useOnlineStatus } from '../../hooks/useOnlineStatus'
 import './NetworkStatus.scss'
 
 export default function NetworkStatus() {
-  const { Tooltip, Badge, Button, Modal, Descriptions, Space } = useAntd()
+  const {
+    Tooltip,
+    Badge,
+    Button,
+    Modal,
+    Descriptions,
+    DescriptionsItem,
+    Space,
+  } = useAntd()
   const {
     isOnline,
     connectionType,
@@ -97,28 +105,28 @@ export default function NetworkStatus() {
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <Descriptions column={1} size="small">
-            <Descriptions.Item label="连接状态">
+            <DescriptionsItem label="连接状态">
               <Badge
                 color={isOnline ? '#52c41a' : '#ff4d4f'}
                 text={isOnline ? '在线' : '离线'}
               />
-            </Descriptions.Item>
+            </DescriptionsItem>
 
             {isOnline && (
               <>
-                <Descriptions.Item label="网络质量">
+                <DescriptionsItem label="网络质量">
                   <Badge color={networkQualityColor} text={getStatusText()} />
-                </Descriptions.Item>
+                </DescriptionsItem>
 
-                <Descriptions.Item label="连接类型">
+                <DescriptionsItem label="连接类型">
                   {connectionType !== 'unknown' ? connectionType : '未知'}
-                </Descriptions.Item>
+                </DescriptionsItem>
 
-                <Descriptions.Item label="有效类型">
+                <DescriptionsItem label="有效类型">
                   {effectiveType !== 'unknown'
                     ? effectiveType.toUpperCase()
                     : '未知'}
-                </Descriptions.Item>
+                </DescriptionsItem>
               </>
             )}
           </Descriptions>
@@ -127,15 +135,15 @@ export default function NetworkStatus() {
             <div className="speed-test-result">
               <h4>网速测试结果</h4>
               <Descriptions column={1} size="small">
-                <Descriptions.Item label="延迟">
+                <DescriptionsItem label="延迟">
                   {speedTestResult.duration} ms
-                </Descriptions.Item>
-                <Descriptions.Item label="速度">
+                </DescriptionsItem>
+                <DescriptionsItem label="速度">
                   {speedTestResult.speedKbps} KB/s
-                </Descriptions.Item>
-                <Descriptions.Item label="测试文件大小">
+                </DescriptionsItem>
+                <DescriptionsItem label="测试文件大小">
                   {Math.round(speedTestResult.size / 1024)} KB
-                </Descriptions.Item>
+                </DescriptionsItem>
               </Descriptions>
             </div>
           )}

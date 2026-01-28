@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { useAntd } from '../../hooks/useAntd'
 import { useI18n } from '../../hooks/useI18n'
-import ColorTest from '../../components/ColorTest'
 import './Home.scss'
 
 export default function Home() {
@@ -106,11 +105,6 @@ export default function Home() {
               </Card>
             </Col>
           </Row>
-        </div>
-
-        {/* UnoCSS 颜色系统测试 */}
-        <div className="color-test-section">
-          <ColorTest />
         </div>
       </div>
     </div>
