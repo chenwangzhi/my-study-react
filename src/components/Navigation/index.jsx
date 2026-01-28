@@ -1,85 +1,94 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { useAntd } from '../../hooks/useAntd';
-import ThemeToggle from '../ThemeToggle';
-import './Navigation.scss';
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useAuth } from '../../hooks/useAuth'
+import { useAntd } from '../../hooks/useAntd'
+import { useI18n } from '../../hooks/useI18n'
+import ThemeToggle from '../ThemeToggle'
+import LanguageSwitch from '../LanguageSwitch'
+import './Navigation.scss'
 
 export default function Navigation() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { isAuthenticated, user, logout } = useAuth();
-  const { 
-    Header, 
-    Menu, 
-    Button, 
-    Space, 
-    Avatar, 
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { isAuthenticated, user, logout } = useAuth()
+  const { t } = useI18n()
+  const {
+    Header,
+    Menu,
+    Button,
+    Space,
+    Avatar,
     Dropdown,
     UserOutlined,
     SettingOutlined,
     LogoutOutlined,
     HomeOutlined,
     DashboardOutlined,
-    ProfileOutlined
-  } = useAntd();
+    ProfileOutlined,
+  } = useAntd()
 
   const handleMenuClick = ({ key }) => {
-    navigate(key);
-  };
+    navigate(key)
+  }
 
   const handleUserMenuClick = ({ key }) => {
     switch (key) {
       case 'profile':
-        navigate('/profile');
-        break;
+        navigate('/profile')
+        break
       case 'settings':
-        navigate('/settings');
-        break;
+        navigate('/settings')
+        break
       case 'logout':
-        logout();
-        navigate('/');
-        break;
+        logout()
+        navigate('/')
+        break
       default:
-        break;
+        break
     }
-  };
+  }
 
   const userMenuItems = [
     {
       key: 'profile',
       icon: <ProfileOutlined />,
-      label: '个人中心',
+      label: t('navigation.profile'),
     },
-    ...(user?.role === 'admin' ? [{
-      key: 'settings',
-      icon: <SettingOutlined />,
-      label: '系统设置',
-    }] : []),
+    ...(user?.role === 'admin'
+      ? [
+          {
+            key: 'settings',
+            icon: <SettingOutlined />,
+            label: t('navigation.settings'),
+          },
+        ]
+      : []),
     {
       type: 'divider',
     },
     {
       key: 'logout',
       icon: <LogoutOutlined />,
-      label: '退出登录',
+      label: t('navigation.logout'),
       danger: true,
     },
-  ];
+  ]
 
   const menuItems = [
     {
       key: '/',
       icon: <HomeOutlined />,
-      label: '首页',
+      label: t('navigation.home'),
     },
-    ...(isAuthenticated ? [
-      {
-        key: '/dashboard',
-        icon: <DashboardOutlined />,
-        label: '仪表盘',
-      },
-    ] : []),
-  ];
+    ...(isAuthenticated
+      ? [
+          {
+            key: '/dashboard',
+            icon: <DashboardOutlined />,
+            label: t('navigation.dashboard'),
+          },
+        ]
+      : []),
+  ]
 
   return (
     <Header className="app-header">
@@ -97,9 +106,10 @@ export default function Navigation() {
             className="header-menu"
           />
         </div>
-        
+
         <div className="header-right">
           <Space>
+            <LanguageSwitch />
             <ThemeToggle />
             {isAuthenticated ? (
               <Dropdown
@@ -110,22 +120,22 @@ export default function Navigation() {
                 placement="bottomRight"
               >
                 <div className="user-info">
-                  <Avatar 
-                    size="small" 
-                    src={user?.avatar} 
-                    icon={<UserOutlined />} 
+                  <Avatar
+                    size="small"
+                    src={user?.avatar}
+                    icon={<UserOutlined />}
                   />
                   <span className="username">{user?.name}</span>
                 </div>
               </Dropdown>
             ) : (
               <Button type="primary" onClick={() => navigate('/login')}>
-                登录
+                {t('navigation.login')}
               </Button>
             )}
           </Space>
         </div>
       </div>
     </Header>
-  );
+  )
 }
