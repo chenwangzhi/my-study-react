@@ -11,6 +11,7 @@ const NotFound = lazy(() => import('../pages/NotFound'))
 const APIDemo = lazy(() => import('../components/APIDemo'))
 const ExternalAPIDemo = lazy(() => import('../components/ExternalAPIDemo'))
 const SimpleAPITest = lazy(() => import('../components/SimpleAPITest'))
+const EnhancedAPIDemo = lazy(() => import('../components/EnhancedAPIDemo'))
 
 // 路由配置
 export const routes = [
@@ -82,6 +83,15 @@ export const routes = [
     element: SimpleAPITest,
     meta: {
       title: 'API测试',
+      requiresAuth: true,
+      roles: ['admin', 'user'],
+    },
+  },
+  {
+    path: '/enhanced-api',
+    element: EnhancedAPIDemo,
+    meta: {
+      title: '增强版API演示',
       requiresAuth: true,
       roles: ['admin', 'user'],
     },

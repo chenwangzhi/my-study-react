@@ -184,6 +184,39 @@
     }
   }
 
+  // API使用说明列表
+  .api-usage-list {
+    .api-usage-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .api-usage-title {
+        margin-bottom: 4px;
+
+        a {
+          color: var(--primary-color);
+          font-weight: 500;
+          text-decoration: none;
+
+          &:hover {
+            color: var(--primary-color-hover);
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .api-usage-description {
+        color: var(--text-color-secondary);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+  }
+
   // 列表样式
   .ant-list {
     .ant-list-item {

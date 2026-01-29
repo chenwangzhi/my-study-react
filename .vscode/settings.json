@@ -50,5 +50,6 @@
   "prettier.enable": true,
   "prettier.tabWidth": 2, // 适配前端主流 2 空格缩进
   "prettier.singleQuote": true, // 单引号（React/TS 主流规范）
-  "prettier.semi": false // 结尾无分号（可选，根据团队规范调整）
+  "prettier.semi": false,
+  "i18n-ally.localesPaths": ["src/i18n", "src/i18n/locales"] // 结尾无分号（可选，根据团队规范调整）
 }

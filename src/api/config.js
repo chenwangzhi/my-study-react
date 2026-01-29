@@ -111,7 +111,7 @@ export const EXTERNAL_APIS = {
   CAT_FACTS: 'https://catfact.ninja',
 
   // 狗狗图片API
-  DOG_IMAGES: 'https://dog.ceo/dog-api',
+  DOG_IMAGES: 'https://dog.ceo',
 
   // 诗词API
   POETRY: 'https://v1.jinrishici.com',

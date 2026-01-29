@@ -58,7 +58,6 @@ import {
   Avatar,
   Spin,
   Image,
-  List,
 } from 'antd'
 
 import {
@@ -92,8 +91,6 @@ const { Item: DescriptionsItem } = Descriptions
 const { Dragger } = Upload
 const { RangePicker } = DatePicker
 const { Title, Text, Paragraph } = Typography
-const { Item: ListItem } = List
-const { Meta: ListItemMeta } = List.Item
 
 // 全局组件对象
 const GlobalComponents = {
@@ -125,9 +122,6 @@ const GlobalComponents = {
   Title,
   Text,
   Paragraph,
-  List,
-  ListItem,
-  ListItemMeta,
 
   // 反馈组件
   Alert,

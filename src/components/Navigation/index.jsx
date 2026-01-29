@@ -103,6 +103,11 @@ export default function Navigation() {
             icon: <SettingOutlined />,
             label: 'API测试',
           },
+          {
+            key: '/enhanced-api',
+            icon: <SettingOutlined />,
+            label: '增强版API演示',
+          },
         ]
       : []),
   ]

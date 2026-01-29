@@ -28,20 +28,29 @@ export function useAPI(apiFunction, options = {}) {
   const [error, setError] = useState(null)
   const { showSuccess, showError } = useNotification()
   const cancelRef = useRef(false)
+  const loadingRef = useRef(false) // 添加loading状态的ref引用
 
   // 执行 API 请求
   const execute = useCallback(
     async (...args) => {
-      if (cancelRef.current) return
+      // 如果组件已卸载或已有请求在进行中，直接返回
+      if (cancelRef.current || loadingRef.current) return
+
+      let result = null
 
       try {
+        // 设置loading状态
+        loadingRef.current = true
         setLoading(true)
         setError(null)
 
-        const result = await apiFunction(...args)
+        // 执行API请求
+        result = await apiFunction(...args)
 
-        if (cancelRef.current) return
+        // 检查组件是否已卸载
+        if (cancelRef.current) return result
 
+        // 设置数据
         setData(result)
 
         // 显示成功消息
@@ -51,27 +60,42 @@ export function useAPI(apiFunction, options = {}) {
 
         // 执行成功回调
         if (onSuccess) {
-          onSuccess(result, ...args)
+          try {
+            onSuccess(result, ...args)
+          } catch (callbackError) {
+            console.error('Success callback error:', callbackError)
+          }
         }
 
         return result
       } catch (err) {
+        // 检查组件是否已卸载
         if (cancelRef.current) return
 
+        // 设置错误状态
         setError(err)
 
         // 显示错误消息
         if (showErrorMessage) {
-          showError(err.message || errorMessage)
+          const message =
+            err?.message || err?.response?.data?.message || errorMessage
+          showError(message)
         }
 
         // 执行错误回调
         if (onError) {
-          onError(err, ...args)
+          try {
+            onError(err, ...args)
+          } catch (callbackError) {
+            console.error('Error callback error:', callbackError)
+          }
         }
 
+        // 重新抛出错误，让调用者可以处理
         throw err
       } finally {
+        // 确保loading状态被重置，无论成功还是失败
+        loadingRef.current = false
         if (!cancelRef.current) {
           setLoading(false)
         }
@@ -95,12 +119,22 @@ export function useAPI(apiFunction, options = {}) {
     setData(defaultData)
     setError(null)
     setLoading(false)
+    loadingRef.current = false
   }, [defaultData])
+
+  // 取消请求
+  const cancel = useCallback(() => {
+    cancelRef.current = true
+    setLoading(false)
+    loadingRef.current = false
+  }, [])
 
   // 立即执行
   useEffect(() => {
     if (immediate) {
-      execute()
+      execute().catch(() => {
+        // 静默处理immediate执行的错误，因为错误已经在execute中处理了
+      })
     }
   }, [immediate, execute])
 
@@ -108,6 +142,7 @@ export function useAPI(apiFunction, options = {}) {
   useEffect(() => {
     return () => {
       cancelRef.current = true
+      loadingRef.current = false
     }
   }, [])
 
@@ -117,6 +152,7 @@ export function useAPI(apiFunction, options = {}) {
     error,
     execute,
     reset,
+    cancel, // 新增取消功能
   }
 }
 
@@ -263,40 +299,72 @@ export function useUpload(uploadFunction, options = {}) {
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState(null)
   const { showSuccess, showError } = useNotification()
+  const uploadingRef = useRef(false) // 添加上传状态的ref引用
 
   const upload = useCallback(
     async (file) => {
+      // 如果已有上传在进行中，直接返回
+      if (uploadingRef.current) {
+        console.warn('Upload already in progress')
+        return
+      }
+
+      let result = null
+
       try {
+        // 设置上传状态
+        uploadingRef.current = true
         setUploading(true)
         setProgress(0)
         setError(null)
 
-        const result = await uploadFunction(file, (progressPercent) => {
-          setProgress(progressPercent)
+        // 执行上传
+        result = await uploadFunction(file, (progressPercent) => {
+          // 确保进度值在有效范围内
+          const validProgress = Math.max(0, Math.min(100, progressPercent || 0))
+          setProgress(validProgress)
         })
 
+        // 显示成功消息
         if (showSuccessMessage) {
           showSuccess(successMessage)
         }
 
+        // 执行成功回调
         if (onSuccess) {
-          onSuccess(result, file)
+          try {
+            onSuccess(result, file)
+          } catch (callbackError) {
+            console.error('Upload success callback error:', callbackError)
+          }
         }
 
         return result
       } catch (err) {
+        // 设置错误状态
         setError(err)
 
+        // 显示错误消息
         if (showErrorMessage) {
-          showError(err.message || errorMessage)
+          const message =
+            err?.message || err?.response?.data?.message || errorMessage
+          showError(message)
         }
 
+        // 执行错误回调
         if (onError) {
-          onError(err, file)
+          try {
+            onError(err, file)
+          } catch (callbackError) {
+            console.error('Upload error callback error:', callbackError)
+          }
         }
 
+        // 重新抛出错误
         throw err
       } finally {
+        // 确保上传状态被重置，无论成功还是失败
+        uploadingRef.current = false
         setUploading(false)
         setProgress(0)
       }
@@ -314,11 +382,20 @@ export function useUpload(uploadFunction, options = {}) {
     ],
   )
 
+  // 取消上传
+  const cancelUpload = useCallback(() => {
+    uploadingRef.current = false
+    setUploading(false)
+    setProgress(0)
+    setError(null)
+  }, [])
+
   return {
     upload,
     uploading,
     progress,
     error,
+    cancelUpload, // 新增取消上传功能
   }
 }
 
@@ -342,18 +419,38 @@ export function useBatchOperation(batchFunction, options = {}) {
   const [results, setResults] = useState([])
   const [errors, setErrors] = useState([])
   const { showSuccess, showError } = useNotification()
+  const loadingRef = useRef(false) // 添加loading状态的ref引用
 
   const execute = useCallback(
     async (items) => {
+      // 如果已有批量操作在进行中，直接返回
+      if (loadingRef.current) {
+        console.warn('Batch operation already in progress')
+        return
+      }
+
+      if (!Array.isArray(items) || items.length === 0) {
+        const error = new Error('Items must be a non-empty array')
+        if (showErrorMessage) {
+          showError(error.message)
+        }
+        throw error
+      }
+
+      let batchResults = []
+      let batchErrors = []
+
       try {
+        // 设置loading状态
+        loadingRef.current = true
         setLoading(true)
         setProgress(0)
         setResults([])
         setErrors([])
 
         const total = items.length
-        const batchResults = []
-        const batchErrors = []
+        batchResults = []
+        batchErrors = []
 
         for (let i = 0; i < total; i++) {
           try {
@@ -363,37 +460,66 @@ export function useBatchOperation(batchFunction, options = {}) {
             batchErrors.push({ index: i, item: items[i], error })
           }
 
-          setProgress(Math.round(((i + 1) / total) * 100))
+          // 更新进度
+          const progressPercent = Math.round(((i + 1) / total) * 100)
+          setProgress(progressPercent)
         }
 
+        // 设置最终结果
         setResults(batchResults)
         setErrors(batchErrors)
 
+        // 显示消息
         if (batchErrors.length === 0 && showSuccessMessage) {
           showSuccess(successMessage)
         } else if (batchErrors.length > 0 && showErrorMessage) {
           showError(`${errorMessage}: ${batchErrors.length}/${total} 失败`)
         }
 
+        // 执行成功回调
         if (onSuccess) {
-          onSuccess(batchResults, batchErrors)
+          try {
+            onSuccess(batchResults, batchErrors)
+          } catch (callbackError) {
+            console.error(
+              'Batch operation success callback error:',
+              callbackError,
+            )
+          }
         }
 
         return { results: batchResults, errors: batchErrors }
       } catch (err) {
-        setErrors([{ error: err }])
+        // 设置错误状态
+        const errorInfo = [{ error: err }]
+        setErrors(errorInfo)
 
+        // 显示错误消息
         if (showErrorMessage) {
-          showError(err.message || errorMessage)
+          const message =
+            err?.message || err?.response?.data?.message || errorMessage
+          showError(message)
         }
 
+        // 执行错误回调
         if (onError) {
-          onError(err)
+          try {
+            onError(err)
+          } catch (callbackError) {
+            console.error(
+              'Batch operation error callback error:',
+              callbackError,
+            )
+          }
         }
 
+        // 重新抛出错误
         throw err
       } finally {
+        // 确保loading状态被重置，无论成功还是失败
+        loadingRef.current = false
         setLoading(false)
+        // 注意：这里不重置progress，让用户看到最终进度
       }
     },
     [
@@ -409,11 +535,28 @@ export function useBatchOperation(batchFunction, options = {}) {
     ],
   )
 
+  // 取消批量操作
+  const cancel = useCallback(() => {
+    loadingRef.current = false
+    setLoading(false)
+  }, [])
+
+  // 重置状态
+  const reset = useCallback(() => {
+    setProgress(0)
+    setResults([])
+    setErrors([])
+    setLoading(false)
+    loadingRef.current = false
+  }, [])
+
   return {
     execute,
     loading,
     progress,
     results,
     errors,
+    cancel, // 新增取消功能
+    reset, // 新增重置功能
   }
 }

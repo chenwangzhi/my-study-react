@@ -28,7 +28,6 @@ const ExternalAPIDemo = () => {
     Image,
     Tag,
     Avatar,
-    List,
     Typography,
     Input,
     Row,
@@ -554,9 +553,8 @@ const ExternalAPIDemo = () => {
 
         {/* 使用说明 */}
         <Card title="API使用说明">
-          <List
-            size="small"
-            dataSource={[
+          <div className="api-usage-list">
+            {[
               {
                 title: 'JSONPlaceholder',
                 description:
@@ -588,24 +586,17 @@ const ExternalAPIDemo = () => {
                 description: '提供中国古典诗词的API服务',
                 url: 'https://www.jinrishici.com',
               },
-            ]}
-            renderItem={(item) => (
-              <List.Item>
-                <List.Item.Meta
-                  title={
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.title}
-                    </a>
-                  }
-                  description={item.description}
-                />
-              </List.Item>
-            )}
-          />
+            ].map((item, index) => (
+              <div key={index} className="api-usage-item">
+                <div className="api-usage-title">
+                  <a href={item.url} target="_blank" rel="noopener noreferrer">
+                    {item.title}
+                  </a>
+                </div>
+                <div className="api-usage-description">{item.description}</div>
+              </div>
+            ))}
+          </div>
         </Card>
       </div>
     </div>
